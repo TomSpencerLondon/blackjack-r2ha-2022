@@ -8,7 +8,7 @@ public class CardDisplayTest {
     @Test
     void displayTenAsString() {
         Card card = new Card(Suit.HEARTS, Rank.TEN);
-        assertThat(card.display())
+        assertThat(ConsoleCard.display(card))
                 .isEqualTo("[31m┌─────────┐[1B[11D│10       │[1B[11D│         │[1B[11D│    ♥    │[1B[11D│         │[1B[11D│       10│[1B[11D└─────────┘");
     }
 
@@ -16,7 +16,7 @@ public class CardDisplayTest {
     void displayNonTenAsString() {
         Card card = new Card(Suit.HEARTS, Rank.SEVEN);
 
-        assertThat(card.display())
+        assertThat(ConsoleCard.display(card))
                 .isEqualTo("[31m┌─────────┐[1B[11D│7        │[1B[11D│         │[1B[11D│    ♥    │[1B[11D│         │[1B[11D│        7│[1B[11D└─────────┘");
     }
 }
