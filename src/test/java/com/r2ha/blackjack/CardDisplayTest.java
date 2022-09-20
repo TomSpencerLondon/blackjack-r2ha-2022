@@ -12,5 +12,11 @@ public class CardDisplayTest {
                 .isEqualTo("[31m┌─────────┐[1B[11D│10       │[1B[11D│         │[1B[11D│    ♥    │[1B[11D│         │[1B[11D│       10│[1B[11D└─────────┘");
     }
 
+    @Test
+    void displayNonTenAsString() {
+        Card card = new Card(Suit.HEARTS, Rank.SEVEN);
 
+        assertThat(card.display())
+                .isEqualTo("[31m┌─────────┐[1B[11D│7        │[1B[11D│         │[1B[11D│    ♥    │[1B[11D│         │[1B[11D│        7│[1B[11D└─────────┘");
+    }
 }
