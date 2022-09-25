@@ -34,9 +34,7 @@ public class Game {
     }
 
     private static void waitForEnterFromUser() {
-        System.out.println(ansi()
-                                   .cursor(3, 1)
-                                   .fgBrightBlack().a("Hit [ENTER] to start..."));
+        System.out.println(ansi().cursor(3, 1).fgBrightBlack().a("Hit [ENTER] to start..."));
 
         Scanner scanner = new Scanner(System.in);
         scanner.nextLine();
@@ -44,13 +42,7 @@ public class Game {
 
     private static void displayWelcomeScreen() {
         AnsiConsole.systemInstall();
-        System.out.println(ansi()
-                                   .bgBright(Ansi.Color.WHITE)
-                                   .eraseScreen()
-                                   .cursor(1, 1)
-                                   .fgGreen().a("Welcome to")
-                                   .fgRed().a(" JitterTed's")
-                                   .fgBlack().a(" Blackjack game"));
+        System.out.println(ansi().bgBright(Ansi.Color.WHITE).eraseScreen().cursor(1, 1).fgGreen().a("Welcome to").fgRed().a(" JitterTed's").fgBlack().a(" Blackjack game"));
     }
 
     public Game() {
@@ -137,34 +129,24 @@ public class Game {
 
         System.out.println();
         System.out.println("Player has: ");
-        playerHand.display();
-        System.out.println(" (" + playerHand.displayValue() + ")");
+        System.out.println(ConsoleHand.cardsAsString(playerHand));
+        System.out.println(" (" + playerHand.value() + ")");
     }
 
     private void displayBackOfCard() {
-        System.out.print(
-                ansi()
-                        .cursorUp(7)
-                        .cursorRight(12)
-                        .a("┌─────────┐").cursorDown(1).cursorLeft(11)
-                        .a("│░░░░░░░░░│").cursorDown(1).cursorLeft(11)
-                        .a("│░ J I T ░│").cursorDown(1).cursorLeft(11)
-                        .a("│░ T E R ░│").cursorDown(1).cursorLeft(11)
-                        .a("│░ T E D ░│").cursorDown(1).cursorLeft(11)
-                        .a("│░░░░░░░░░│").cursorDown(1).cursorLeft(11)
-                        .a("└─────────┘"));
+        System.out.print(ansi().cursorUp(7).cursorRight(12).a("┌─────────┐").cursorDown(1).cursorLeft(11).a("│░░░░░░░░░│").cursorDown(1).cursorLeft(11).a("│░ J I T ░│").cursorDown(1).cursorLeft(11).a("│░ T E R ░│").cursorDown(1).cursorLeft(11).a("│░ T E D ░│").cursorDown(1).cursorLeft(11).a("│░░░░░░░░░│").cursorDown(1).cursorLeft(11).a("└─────────┘"));
     }
 
     private void displayFinalGameState() {
         System.out.print(ansi().eraseScreen().cursor(1, 1));
         System.out.println("Dealer has: ");
-        dealerHand.display();
-        System.out.println(" (" + dealerHand.displayValue() + ")");
+        System.out.println(ConsoleHand.cardsAsString(dealerHand));
+        System.out.println(" (" + dealerHand.value() + ")");
 
         System.out.println();
         System.out.println("Player has: ");
-        playerHand.display();
-        System.out.println(" (" + playerHand.displayValue() + ")");
+        System.out.println(ConsoleHand.cardsAsString(playerHand));
+        System.out.println(" (" + playerHand.value() + ")");
     }
 
 }
