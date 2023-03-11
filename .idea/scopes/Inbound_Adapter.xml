@@ -1,0 +1,3 @@
+<component name="DependencyValidationManager">
+  <scope name="Inbound Adapter" pattern="com.r2ha.blackjack.adapter.in..*" />
+</component>
