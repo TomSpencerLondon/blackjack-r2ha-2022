@@ -1,10 +1,10 @@
 package com.r2ha.blackjack;
 
-import static org.fusesource.jansi.Ansi.ansi;
-
-import com.r2ha.blackjack.Card;
-import com.r2ha.blackjack.Rank;
+import com.r2ha.blackjack.domain.Card;
+import com.r2ha.blackjack.domain.Rank;
 import org.fusesource.jansi.Ansi;
+
+import static org.fusesource.jansi.Ansi.ansi;
 
 public class ConsoleCard {
     public static String display(Card card) {
