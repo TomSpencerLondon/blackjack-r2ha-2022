@@ -5,7 +5,12 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
+import java.io.PrintStream;
+import java.util.List;
+
+import static org.assertj.core.api.Assertions.*;
 
 public class GameDisplayTest {
 
@@ -22,14 +27,30 @@ public class GameDisplayTest {
         System.setIn(originalSystemIn);
     }
 
-    @AfterEach
-    public void restoreSystemIn() {
-        System.setIn(originalSystemIn);
-    }
-
     @Test
     void gamePlays() {
         provideInput("\nS\n");
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        PrintStream printStream = new PrintStream(baos);
+        Game.directOutputTo(printStream);
         Game.main(new String[0]);
+
+        List<String> cleanedOutput = baos.toString()
+                                   .replaceAll("\u001B\\[[\\d;]*[^\\d;]", "\n")
+                                   .lines()
+                                   .map(String::strip)
+                                   .toList();
+
+        assertThat(cleanedOutput)
+                .contains(
+                        "Welcome to",
+                        "JitterTed's",
+                        "Blackjack game",
+                        "Hit [ENTER] to start...",
+                        "Dealer has:",
+                        "Player has:",
+                        "[H]it or [S]tand?",
+                        "Player has:"
+                        );
     }
 }

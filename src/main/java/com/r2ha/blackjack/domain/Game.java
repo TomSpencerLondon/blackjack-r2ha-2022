@@ -12,7 +12,7 @@ import static org.fusesource.jansi.Ansi.ansi;
 
 public class Game {
 
-    private static PrintStream consoleOut = new PrintStream(new ByteArrayOutputStream());
+    private static PrintStream consoleOut = System.out;
     private static Scanner scanner;
     private final Deck deck;
 
@@ -27,6 +27,10 @@ public class Game {
         playGame();
 
         resetScreen();
+    }
+
+    public static void directOutputTo(PrintStream printStream) {
+        consoleOut = printStream;
     }
 
     private static void resetScreen() {
