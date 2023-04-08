@@ -52,5 +52,29 @@ public class GameDisplayTest {
                         "[H]it or [S]tand?",
                         "Player has:"
                         );
+
+        long cardTops = cleanedOutput.stream()
+                                  .filter(s -> s.equals("┌─────────┐")).count();
+
+        assertThat(cardTops)
+                .describedAs("At least 8 cards should have been displayed, could be more depending on Dealer")
+                .isGreaterThanOrEqualTo(8);
+
+
+        long cardBottoms = cleanedOutput.stream()
+                                     .filter(s -> s.equals("└─────────┘")).count();
+
+        assertThat(cardTops)
+                .describedAs("Number of Card Tops must match number of Card Bottoms")
+                .isEqualTo(cardTops);
+
+        long cardMiddles = cleanedOutput.stream()
+                                  .filter(s -> s.equals("│         │")
+                                          || s.equals("│░░░░░░░░░│"))
+                                  .count();
+
+        assertThat(cardMiddles)
+                .describedAs("Number of Card Middles must match Cards * 2")
+                .isEqualTo(cardTops * 2);
     }
 }
